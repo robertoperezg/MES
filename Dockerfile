@@ -1,4 +1,4 @@
-FROM node:lts-alpine as build
+FROM public.ecr.aws/docker/library/node:lts as build
 
 WORKDIR /app
 
@@ -10,4 +10,4 @@ RUN npm run build
 FROM nginx
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 
-COPY --from=build /app/build /usr/share/nginx/html 
+COPY --from=build /app/build /usr/share/nginx/html
